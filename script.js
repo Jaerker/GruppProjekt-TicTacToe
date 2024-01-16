@@ -1,5 +1,4 @@
 "use strict";
-//test Lisa 
 /**
  * Globalt objekt som innehåller de attribut som ni skall använda.
  * Initieras genom anrop till funktionern initGlobalObject().
@@ -94,12 +93,29 @@ function checkForGameOver() {
 //som motsvarar nuvarande combo innehåller playerIn. Om sant, ändra värdet på flaggan.
 //Returnera flaggan isWinner
 function checkWinner(playerIn) {
+    let winningCombos = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6],
+    ]
 
+    let isWinner = false;
+
+    isWinner = winningCombos.some(combo =>
+        combo.every(position => oGameData.gameField[position] === playerIn));
+
+    return isWinner
 }
+
 
 //Kontrollera om alla platser i oGameData.GameField är fyllda. Om sant returnera true, annars false.
 function checkForDraw() {
-
+    return oGameData.gameField.every(position => position !== '');
 }
 
 //Funktion som förbereder spelet inför start

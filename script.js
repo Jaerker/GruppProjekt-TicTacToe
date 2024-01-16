@@ -1,5 +1,5 @@
 "use strict";
-//test Lisa 
+
 /**
  * Globalt objekt som innehåller de attribut som ni skall använda.
  * Initieras genom anrop till funktionern initGlobalObject().

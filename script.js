@@ -1,5 +1,5 @@
 "use strict";
-
+// Kim
 /**
  * Globalt objekt som innehåller de attribut som ni skall använda.
  * Initieras genom anrop till funktionern initGlobalObject().
@@ -18,7 +18,7 @@ function initGlobalObject() {
     //Datastruktur för vilka platser som är lediga respektive har brickor
     //Genom at fylla i här med antingen X eler O kan ni testa era rättningsfunktioner 
     oGameData.gameField = ['', '', '', '', '', '', '', '', ''];
-    
+
     /* Testdata för att testa rättningslösning */
     //oGameData.gameField = ['X', 'X', 'X', '', '', '', '', '', ''];
     //oGameData.gameField = ['X', '', '', 'X', '', '', 'X', '', ''];
@@ -68,17 +68,17 @@ function initGlobalObject() {
  * returnerar 3 om det är oavgjort.
  * Funktionen tar inte emot några värden.
  */
-function checkForGameOver() {   
+function checkForGameOver() {
     //Kontrollerar om "X" vunnit genom att köra rättningsfunktionerna, om så är fallet returneras 1
-    if (checkWinner('X')){
-       return 1;
+    if (checkWinner('X')) {
+        return 1;
     }
     //Kontrollerar om "O" vunnit genom att köra rättningsfunktionerna, om så är fallet returneras 2
-    if (checkWinner('O')){
+    if (checkWinner('O')) {
         return 2;
     }
     //Kontrollerar om spelet är oavgjort, returnerar isåfall 3
-    if(checkForDraw()) {
+    if (checkForDraw()) {
         return 3;
     }
     //Annars returneras 0, och spelet fortlöper
@@ -115,7 +115,7 @@ function initiateGame() {
 
 }
 
-function startGame () {
+function startGame() {
 
 }
 

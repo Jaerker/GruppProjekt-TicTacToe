@@ -46,9 +46,7 @@ function initGlobalObject() {
 }
 
 
-function validateForm() {
 
-}
 
 function startGame() {
 
@@ -57,8 +55,61 @@ function startGame() {
 function prepGame() {
     // Göm spelplanen
     document.querySelector(`#gameArea`).classList.add(`d-none`);
-    // lägga en lyssnare på "Starta spelet!"-knappen. klick anropar funktionen "initiateGame()
-    document.querySelector(`#newGame`).addEventListener(`click`, () => initiateGame());
+    // lägga en lyssnare på "Starta spelet!"-knappen. klick anropar funktionen "initiateGame() först efter att "validateForm()" returnerat true
+    document.querySelector(`#newGame`).addEventListener(`click`, () => {
+        if (validateForm()) {
+            initiateGame()
+        }
+    });
+}
+
+function validateForm() {
+    const playerOneName = document.querySelector(`#nick1`)
+    const playerOneColor = document.querySelector(`#color1`)
+    const playerTwoName = document.querySelector(`#nick2`)
+    const playerTwoColor = document.querySelector(`#color2`)
+
+    // Användarnamnet måste vara mellan 3 och 10 tecken långt.
+    try {
+
+
+        if (playerOneName.value.length < 3 || playerOneName.value.length > 10) {
+            throw {
+                node: playerOneName,
+                msg: `Användarnamnet måste vara mellan 3 och 10 tecken långt.`
+            }
+        } else if (playerTwoName.value.length < 3 || playerTwoName.value.length > 10) {
+            throw {
+                node: playerTwoName,
+                msg: `Användarnamnet måste vara mellan 3 och 10 tecken långt.`
+            }
+        } else {
+            // Den valda färgen får inte vara svart eller vit.
+
+            if (playerOneColor.value === `#ffffff` || playerOneColor.value === `#000000`) {
+                throw {
+                    node: playerOneColor,
+                    msg: `Den valda färgen får inte vara svart eller vit.`
+                }
+            } else if (playerTwoColor.value === `#ffffff` || playerTwoColor.value === `#000000`) {
+                throw {
+                    node: playerTwoColor,
+                    msg: `Den valda färgen får inte vara svart eller vit.`
+                }
+            } else {
+                return true;
+            }
+        }
+
+    } catch (error) {
+        error.node.value = ``;
+        error.node.focus();
+        document.querySelector(`#errorMsg`).textContent = error.msg;
+    }
+
+
+    // Lägg gärna till egna saker att kolla efter också.
+
 }
 
 function initiateGame() {
